@@ -1,15 +1,16 @@
 package com.twilio.multiplesms.service
 
+import com.twilio.multiplesms.config.TwilioConfig
 import com.twilio.multiplesms.data.Contact
 import com.twilio.rest.api.v2010.account.Message
 import com.twilio.type.PhoneNumber
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class SMSService {
-    // replace this with your Twilio phone number
-    private val TWILIO_PHONE_NUMBER: String = "+1555555555"
-
+class SMSService (
+    @Autowired private val twilioConfig: TwilioConfig
+)  {
     fun sendMultipleSMS(
         contactList: List<Contact>,
         message: String
@@ -18,11 +19,11 @@ class SMSService {
         //  passed as parameter
         contactList
             .parallelStream()
-            .forEach{ user: Contact ->
+            .forEach{ user ->
                 // initializing a message and sending it
                 Message.creator(
-                    PhoneNumber(TWILIO_PHONE_NUMBER),  // sender phone number
                     PhoneNumber(user.phoneNumber),  // receiver phone number
+                    PhoneNumber(twilioConfig.phoneNumber),  // sender phone number
                     message
                 ).create()
             }
