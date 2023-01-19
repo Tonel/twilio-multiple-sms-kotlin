@@ -1,10 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.springframework.boot") version "3.0.0"
+	id("org.springframework.boot") version "3.0.1"
 	id("io.spring.dependency-management") version "1.1.0"
-	kotlin("jvm") version "1.7.21"
-	kotlin("plugin.spring") version "1.7.21"
+	kotlin("jvm") version "1.7.22"
+	kotlin("plugin.spring") version "1.7.22"
 }
 
 group = "com.twilio"
@@ -21,7 +21,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	implementation("com.twilio.sdk:twilio:9.1.4")
+	implementation("com.twilio.sdk:twilio:9.2.1")
 }
 
 tasks.withType<KotlinCompile> {
